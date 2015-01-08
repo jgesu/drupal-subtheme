@@ -1,0 +1,44 @@
+@function calculateRem($size) {
+  $remSize: $size / $browser-context;
+  @return $remSize * 1rem;
+}
+@mixin font-size($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+}
+@mixin alpha-background-color($color, $background) {
+  $percent: alpha($color) * 100%;
+  $opaque: opacify($color, 1);
+  $solid-color: mix($opaque, $background, $percent);
+  background-color: $solid-color;
+  background-color: $color;
+}
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+@mixin respond-to($media) {
+  @if $media == mobile {
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) { @content; }
+  }
+  @if $media == mobile-l {
+    @media only screen and (min-width : 321px) { @content; }
+  }
+  @if $media == mobile-p {
+    @media only screen and (max-width : 320px) { @content; }
+  }
+  @else if $media == ipad {
+    @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) { @content; }
+  }
+  @else if $media == ipad-l {
+  	@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) { @content; }
+  }
+  @else if $media == ipad-p {
+  	@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) { @content; }
+  }
+  @else if $media == laptop {
+    @media only screen and (min-width : 1224px) { @content; }
+  }
+}

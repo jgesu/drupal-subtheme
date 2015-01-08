@@ -1,6 +1,13 @@
-$font-stack:    Helvetica, sans-serif;
-$primary-color: #888;
-body {
-  color: $primary-color;
-  font-size: 1.2em;
+@import "config";
+@import "functions";
+
+body{
+  color: $primario;
+  @include font-size(12);
+}
+.selector {
+  color: red;
+  @include respond-to(mobile) { 
+    color: blue;
+  }
 }
